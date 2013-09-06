@@ -7,6 +7,7 @@ do nice toggle
 * [basic](http://takazudo.github.io/jQuery.NiceToggler/demos/basic/)
 * [easing](http://takazudo.github.io/jQuery.NiceToggler/demos/easing/)
 * [events](http://takazudo.github.io/jQuery.NiceToggler/demos/events/)
+* [classManipulation](http://takazudo.github.io/jQuery.NiceToggler/demos/classManipulation/)
 
 ## Usage
 
