@@ -1,0 +1,125 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width">
+<script src="../../EveEve/eveeve.js"></script>
+<script src="../../libs/jquery/1.5.1/jquery.js"></script>
+<script src="../../jquery.nicetoggler.js"></script>
+<style>
+body {
+	font-size: 12px;
+}
+h1 {
+	font-size:1.2em;
+	text-align:center;
+}
+.menu {
+	border:1px solid #000;
+	margin:0 auto;
+	max-width:500px;
+}
+	.menu-item {
+		border-top:1px solid #000;
+	}
+	.menu-item:first-child {
+		border-top:0;
+	}
+		.menu-item-h {
+			display:block;
+			padding:10px 15px;
+		}
+		.menu-item-h-opened {
+			background:#f99;
+		}
+		.menu-item-h-closed {
+			background:#ddd;
+		}
+		.menu-item-contentwrap {
+			border-top:1px solid #000;
+		}
+			.menu-item-content {
+				padding:10px 15px 10px 25px;
+			}
+		.js .menu-item-contentwrap {
+			display:none;
+		}
+</style>
+<script>
+
+$('html').removeClass('no-js').addClass('js'); // or load Modernizr
+
+$(function() {
+
+	//$('.apply-enterload').imgEnterLoad();
+	$('.menu-item').each(function(i, el) {
+		var $h = $('.menu-item-h', el);
+		var $contentwrap = $('.menu-item-contentwrap', el);
+		var cls_opened = 'menu-item-h-opened';
+		var cls_closed = 'menu-item-h-closed';
+		var toOpened = function() {
+			$h.removeClass(cls_closed).addClass(cls_opened);
+		};
+		var toClosed = function() {
+			$h.removeClass(cls_opened).addClass(cls_closed);
+		};
+		toClosed(); // put closed class first.
+		var oninit = function(instance) {
+			instance.on('beforeshow', toOpened);
+			instance.on('beforehide', toClosed);
+		};
+		$h.click(function(e) {
+			e.preventDefault();
+			$contentwrap.niceToggle({
+				inner: '.menu-item-content',
+				oninit: oninit
+			});
+		});
+	});
+
+});
+</script>
+</head>
+<body>
+
+<h1>jQuery.NiceToggler</h1>
+
+<div class="menu">
+	<div class="menu-item">
+		<a class="menu-item-h" href="#">Menu</a>
+		<div class="menu-item-contentwrap">
+			<div class="menu-item-content">
+				The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+			</div>
+		</div>
+	</div>
+	<div class="menu-item">
+		<a class="menu-item-h" href="#">Menu</a>
+		<div class="menu-item-contentwrap">
+			<div class="menu-item-content">
+				The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+			</div>
+		</div>
+	</div>
+	<div class="menu-item">
+		<a class="menu-item-h" href="#">Menu</a>
+		<div class="menu-item-contentwrap">
+			<div class="menu-item-content">
+				The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+			</div>
+		</div>
+	</div>
+	<div class="menu-item">
+		<a class="menu-item-h" href="#">Menu</a>
+		<div class="menu-item-contentwrap">
+			<div class="menu-item-content">
+				The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. 
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>
