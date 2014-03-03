@@ -8,10 +8,9 @@ do nice toggle
 * [easing](http://takazudo.github.io/jQuery.NiceToggler/demos/easing/)
 * [events](http://takazudo.github.io/jQuery.NiceToggler/demos/events/)
 * [classManipulation](http://takazudo.github.io/jQuery.NiceToggler/demos/classManipulation/)
+* [initiallyOpen](http://takazudo.github.io/jQuery.NiceToggler/demos/initiallyOpen/)
 
 ## Usage
-
-see demos
 
 see demos
 
