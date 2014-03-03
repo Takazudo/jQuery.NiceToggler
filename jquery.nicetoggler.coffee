@@ -17,15 +17,17 @@ do ($ = jQuery) ->
       easing_slideDown: 'swing'
       easing_slideUp: 'swing'
       delay_fadeIn: 50
+      cls_initiallyOpen: null
       oninit: null
     
     constructor: (@$el, options) ->
 
-      @options = $.extend {}, ns.NiceToggler.defaults, options
+      o = @options = $.extend {}, ns.NiceToggler.defaults, options
       @visible = false
       @_prepareEls()
-      if @options.oninit
-        @options.oninit this
+      if o.oninit
+        o.oninit this
+      @_handleInitiallyVisible()
 
     toggle: ->
 
@@ -105,6 +107,10 @@ do ($ = jQuery) ->
           .animate(to, options)
       , o.delay_fadeIn
 
+    _handleInitiallyVisible: ->
+      cls = @options.cls_initiallyOpen
+      if @$el.hasClass cls
+        @visible = true
 
   # ============================================================
   # bridge to plugin

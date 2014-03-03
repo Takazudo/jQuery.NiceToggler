@@ -22,17 +22,20 @@
         easing_slideDown: 'swing',
         easing_slideUp: 'swing',
         delay_fadeIn: 50,
+        cls_initiallyOpen: null,
         oninit: null
       };
 
       function NiceToggler($el, options) {
+        var o;
         this.$el = $el;
-        this.options = $.extend({}, ns.NiceToggler.defaults, options);
+        o = this.options = $.extend({}, ns.NiceToggler.defaults, options);
         this.visible = false;
         this._prepareEls();
-        if (this.options.oninit) {
-          this.options.oninit(this);
+        if (o.oninit) {
+          o.oninit(this);
         }
+        this._handleInitiallyVisible();
       }
 
       NiceToggler.prototype.toggle = function() {
@@ -131,6 +134,14 @@
             return _this.$inner.css(initProps).animate(to, options);
           };
         })(this), o.delay_fadeIn);
+      };
+
+      NiceToggler.prototype._handleInitiallyVisible = function() {
+        var cls;
+        cls = this.options.cls_initiallyOpen;
+        if (this.$el.hasClass(cls)) {
+          return this.visible = true;
+        }
       };
 
       return NiceToggler;
