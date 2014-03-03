@@ -1,6 +1,6 @@
 /*! jQuery.NiceToggler (https://github.com/Takazudo/jQuery.NiceToggle)
  * lastupdate: 2014-03-03
- * version: 0.1.0
+ * version: 0.1.1
  * author: 'Takazudo' Takeshi Takatsudo <takazudo@gmail.com>
  * License: MIT */
 (function() {
