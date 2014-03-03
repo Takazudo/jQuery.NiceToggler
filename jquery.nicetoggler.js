@@ -1,5 +1,5 @@
 /*! jQuery.NiceToggler (https://github.com/Takazudo/jQuery.NiceToggle)
- * lastupdate: 2013-09-05
+ * lastupdate: 2014-03-03
  * version: 0.1.0
  * author: 'Takazudo' Takeshi Takatsudo <takazudo@gmail.com>
  * License: MIT */
@@ -12,7 +12,6 @@
     EveEve = window.EveEve;
     ns = {};
     ns.NiceToggler = (function(_super) {
-
       __extends(NiceToggler, _super);
 
       NiceToggler.defaults = {
@@ -71,8 +70,7 @@
       };
 
       NiceToggler.prototype._doSlideDown = function() {
-        var o, options, to,
-          _this = this;
+        var o, options, to;
         o = this.options;
         to = {
           height: this._calcInnerHeight()
@@ -80,16 +78,17 @@
         options = {
           easing: o.easing_slideDown,
           duration: o.duration_slideDown,
-          complete: function() {
-            return _this.$el.height('auto');
-          }
+          complete: (function(_this) {
+            return function() {
+              return _this.$el.height('auto');
+            };
+          })(this)
         };
         return this.$el.animate(to, options);
       };
 
       NiceToggler.prototype._doSlideUp = function() {
-        var o, options, to,
-          _this = this;
+        var o, options, to;
         o = this.options;
         to = {
           height: 0
@@ -97,38 +96,41 @@
         options = {
           duration: o.duration_slideUp,
           easing: o.easing_slideUp,
-          complete: function() {
-            _this.$el.hide();
-            return _this.trigger('afterhide');
-          }
+          complete: (function(_this) {
+            return function() {
+              _this.$el.hide();
+              return _this.trigger('afterhide');
+            };
+          })(this)
         };
         return this.$el.stop().animate(to, options);
       };
 
       NiceToggler.prototype._doInnerFadeIn = function() {
-        var o,
-          _this = this;
+        var o;
         o = this.options;
-        return setTimeout(function() {
-          var initProps, options, to;
-          if (!_this.visible) {
-            return;
-          }
-          initProps = {
-            opacity: 0,
-            display: 'block'
-          };
-          to = {
-            opacity: 1
-          };
-          options = {
-            duration: o.duration_fadeIn,
-            complete: function() {
-              return _this.trigger('aftershow');
+        return setTimeout((function(_this) {
+          return function() {
+            var initProps, options, to;
+            if (!_this.visible) {
+              return;
             }
+            initProps = {
+              opacity: 0,
+              display: 'block'
+            };
+            to = {
+              opacity: 1
+            };
+            options = {
+              duration: o.duration_fadeIn,
+              complete: function() {
+                return _this.trigger('aftershow');
+              }
+            };
+            return _this.$inner.css(initProps).animate(to, options);
           };
-          return _this.$inner.css(initProps).animate(to, options);
-        }, o.delay_fadeIn);
+        })(this), o.delay_fadeIn);
       };
 
       return NiceToggler;
